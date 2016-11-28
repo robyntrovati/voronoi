@@ -3,8 +3,6 @@ function Voronoi(config) {
     this[attrKey] = config[attrKey];
   }
 
-    console.log(d3);
-
   this.voronoi = d3.geom.voronoi()
     .clipExtent([[0, 0], [this.width, this.height]]);
   this.generateVertices();
