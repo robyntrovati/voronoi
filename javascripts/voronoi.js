@@ -42,7 +42,7 @@ Voronoi.prototype.draw = function() {
     this.generateVertices();
   }
 
-  var redraw = function() {
+  var redraw = function(isMousePoly) {
     var data;
     if (this.isVoronoi) {
       data = this.voronoi(this.vertices);
@@ -64,7 +64,12 @@ Voronoi.prototype.draw = function() {
 
           if (alpha > 1) alpha = 1;
           if (alpha < 0) alpha = 0;
-          return 'rgba(0,0,0,' + alpha + ')';
+
+          if (isMousePoly && i === 0) {
+            return 'rgb(255, 255, 0)';
+          } else {
+            return 'rgba(0, 0, 0,' + alpha + ')';
+          }
         }.bind(this))
         .attr('d', polygon);
 
@@ -78,7 +83,7 @@ Voronoi.prototype.draw = function() {
       .attr('height', this.height)
       .on('mousemove', function() {
         _self.vertices[0] = d3.mouse(this);
-        redraw();
+        redraw(true);
       });
 
   this.path = this.svg.append('g').selectAll('path');
