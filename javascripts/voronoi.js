@@ -66,7 +66,7 @@ Voronoi.prototype.draw = function() {
           if (alpha < 0) alpha = 0;
 
           if (isMousePoly && i === 0) {
-            return 'rgb(255, 255, 0)';
+            return this.hoverColor;
           } else {
             return 'rgba(0, 0, 0,' + alpha + ')';
           }
@@ -78,7 +78,7 @@ Voronoi.prototype.draw = function() {
 
   var _self = this;
 
-  this.svg = d3.select('#voronoi').append('svg')
+  this.svg = d3.select(this.container).append('svg')
       .attr('width', this.width)
       .attr('height', this.height)
       .on('mousemove', function() {
@@ -99,14 +99,56 @@ Voronoi.prototype.draw = function() {
 };
 
 
-var config = {
-  height: 800,
-  width: 800,
-  points: 20,
-  pointRadius: 1.5,
+var config1 = {
+  container: '#voronoi-01',
+  height: 780,
+  width: 850,
+  points: 30,
+  pointRadius: 1,
+  isVoronoi: true,
+  pointsFixed: true,
+  baseAlpha: 0.84,
+  hoverColor: 'rgb(255, 255, 0)',
+};
+
+var config2 = {
+  container: '#voronoi-02',
+  height: 780,
+  width: 850,
+  points: 240,
+  pointRadius: 1,
+  isVoronoi: true,
+  pointsFixed: true,
+  baseAlpha: 0.84,
+  hoverColor: 'rgb(255, 255, 0)',
+};
+
+var config3 = {
+  container: '#voronoi-03',
+  height: 780,
+  width: 780,
+  points: 30,
+  pointRadius: 1,
   isVoronoi: false,
   pointsFixed: true,
   baseAlpha: 0.84,
+  hoverColor: 'rgb(20, 20, 20)',
 };
 
-new Voronoi(config);
+var config4 = {
+  container: '#voronoi-04',
+  height: 780,
+  width: 780,
+  points: 140,
+  pointRadius: 1,
+  isVoronoi: false,
+  pointsFixed: true,
+  baseAlpha: 0.2,
+  hoverColor: 'rgb(20, 20, 20)',
+};
+
+
+new Voronoi(config1);
+new Voronoi(config2);
+new Voronoi(config3);
+new Voronoi(config4);
